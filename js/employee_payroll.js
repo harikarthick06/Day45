@@ -1,11 +1,20 @@
-// UC 5: Display Employee Details from JSON Object
+// UC 6: Display Employee Details from Local Storage
+
+let empPayrollList = [];
 
 window.addEventListener("DOMContentLoaded", () => {
+    empPayrollList = getEmployeePayrollDataFromStorage();
     createInnerHtml();
 });
 
-const createEmployeePayrollJSON = () => {
-    let empPayrollListLocal = [
+const getEmployeePayrollDataFromStorage = () => {
+    let empPayrollListLocal = localStorage.getItem("EmployeePayrollList");
+
+    if (empPayrollListLocal) {
+        return JSON.parse(empPayrollListLocal);
+    }
+
+    let defaultList = [
         {
             _id: 1,
             _name: "Narayan Mahadevan",
@@ -35,7 +44,8 @@ const createEmployeePayrollJSON = () => {
         }
     ];
 
-    return empPayrollListLocal;
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(defaultList));
+    return defaultList;
 };
 
 const createInnerHtml = () => {
@@ -52,8 +62,6 @@ const createInnerHtml = () => {
     `;
 
     let innerHtml = `${headerHtml}`;
-
-    let empPayrollList = createEmployeePayrollJSON();
 
     for (const empPayrollData of empPayrollList) {
         innerHtml = `${innerHtml}
@@ -89,7 +97,9 @@ const getDeptHtml = (deptList) => {
 };
 
 const removeEmployee = (id) => {
-    alert("Delete employee id: " + id);
+    empPayrollList = empPayrollList.filter(employee => employee._id !== id);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
+    createInnerHtml();
 };
 
 const updateEmployee = (id) => {
