@@ -1,0 +1,45 @@
+/* UC 1 */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+    font-family: "Roboto", sans-serif;
+    background-color: #f7f7f7;
+}
+
+.header {
+    padding: 15px 0;
+    background-color: #ffffff;
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo-symbol {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #82a70c;
+    color: #42515f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.emp-text {
+    font: normal normal bold 20px/25px "Montserrat", sans-serif;
+    color: #82a70c;
+    text-transform: uppercase;
+}
+
+.emp-payroll {
+    color: #42515f;
+}
